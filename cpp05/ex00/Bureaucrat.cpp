@@ -1,6 +1,5 @@
 #include "Bureaucrat.hpp"
 
-// Orthodox Canonical Form implementations
 Bureaucrat::Bureaucrat() : _name("default"), _grade(150) {
 }
 
@@ -17,7 +16,6 @@ Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name), _grade(oth
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
     if (this != &other) {
-        // Can't copy const name
         _grade = other._grade;
     }
     return *this;
@@ -26,7 +24,6 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 Bureaucrat::~Bureaucrat() {
 }
 
-// Getters
 std::string Bureaucrat::getName() const {
     return _name;
 }
@@ -35,7 +32,6 @@ int Bureaucrat::getGrade() const {
     return _grade;
 }
 
-// Grade modification
 void Bureaucrat::incrementGrade() {
     if (_grade <= 1)
         throw GradeTooHighException();

@@ -5,7 +5,7 @@
 #include <iostream>
 #include <stdexcept>
 
-class AForm; // Forward declaration to avoid circular dependency
+class AForm;
 
 class Bureaucrat {
 private:
@@ -13,26 +13,21 @@ private:
     int _grade;
 
 public:
-    // Orthodox Canonical Form
     Bureaucrat();
     Bureaucrat(const std::string& name, int grade);
     Bureaucrat(const Bureaucrat& other);
     Bureaucrat& operator=(const Bureaucrat& other);
     ~Bureaucrat();
 
-    // Getters
     std::string getName() const;
     int getGrade() const;
 
-    // Grade modification
     void incrementGrade();
     void decrementGrade();
     
-    // Form interaction
     void signForm(AForm& form);
     void executeForm(const AForm& form);
 
-    // Exception classes
     class GradeTooHighException : public std::exception {
     public:
         virtual const char* what() const throw();
@@ -44,7 +39,6 @@ public:
     };
 };
 
-// Insertion operator overload
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
 
 #endif

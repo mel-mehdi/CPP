@@ -1,6 +1,5 @@
 #include "PresidentialPardonForm.hpp"
 
-// Orthodox Canonical Form implementations
 PresidentialPardonForm::PresidentialPardonForm() : 
     AForm("Presidential Pardon Form", 25, 5),
     _target("default") {
@@ -27,15 +26,12 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 PresidentialPardonForm::~PresidentialPardonForm() {
 }
 
-// Implementation of pure virtual function
 void PresidentialPardonForm::execute(const Bureaucrat& executor) const {
-    // Check if form can be executed
     checkExecution(executor);
     
     std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }
 
-// Getter
 std::string PresidentialPardonForm::getTarget() const {
     return _target;
 }

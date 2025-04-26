@@ -1,6 +1,5 @@
 #include "RobotomyRequestForm.hpp"
 
-// Orthodox Canonical Form implementations
 RobotomyRequestForm::RobotomyRequestForm() : 
     AForm("Robotomy Request Form", 72, 45),
     _target("default") {
@@ -27,12 +26,9 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 RobotomyRequestForm::~RobotomyRequestForm() {
 }
 
-// Implementation of pure virtual function
 void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
-    // Check if form can be executed
     checkExecution(executor);
     
-    // Make drilling noises
     std::cout << "* DRILLING NOISES * Brr... Bzzt... Whirrr..." << std::endl;
     
     // 50% chance of success
@@ -44,7 +40,6 @@ void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
     }
 }
 
-// Getter
 std::string RobotomyRequestForm::getTarget() const {
     return _target;
 }

@@ -1,6 +1,5 @@
 #include "Form.hpp"
 
-// Orthodox Canonical Form implementations
 Form::Form() : 
     _name("default form"), 
     _signed(false), 
@@ -28,7 +27,6 @@ Form::Form(const Form& other) :
 
 Form& Form::operator=(const Form& other) {
     if (this != &other) {
-        // Can't copy const attributes, only copy the signed status
         _signed = other._signed;
     }
     return *this;
@@ -37,7 +35,6 @@ Form& Form::operator=(const Form& other) {
 Form::~Form() {
 }
 
-// Getters
 std::string Form::getName() const {
     return _name;
 }
@@ -54,14 +51,12 @@ int Form::getGradeToExecute() const {
     return _gradeToExecute;
 }
 
-// Member functions
 void Form::beSigned(const Bureaucrat& bureaucrat) {
     if (bureaucrat.getGrade() > _gradeToSign)
         throw GradeTooLowException();
     _signed = true;
 }
 
-// Exception classes implementation
 const char* Form::GradeTooHighException::what() const throw() {
     return "Error: Form grade too high";
 }
@@ -70,7 +65,6 @@ const char* Form::GradeTooLowException::what() const throw() {
     return "Error: Form grade too low";
 }
 
-// Insertion operator overload
 std::ostream& operator<<(std::ostream& os, const Form& form) {
     os << "Form: " << form.getName() 
        << ", signed: " << (form.isSigned() ? "yes" : "no") 

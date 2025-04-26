@@ -22,10 +22,9 @@ int main() {
         ShrubberyCreationForm shrub("garden");
         std::cout << shrub << std::endl;
         
-        // Signing attempts
+        std::cout << "--------\n";
         intern.signForm(shrub);     // Should work - grade 145 required
         
-        // Execution attempts
         intern.executeForm(shrub);  // Should fail - grade 137 required
         employee.executeForm(shrub); // Should work
         
@@ -33,11 +32,9 @@ int main() {
         RobotomyRequestForm robot("Victor");
         std::cout << robot << std::endl;
         
-        // Signing attempts
         employee.signForm(robot);   // Should fail - grade 72 required
         manager.signForm(robot);    // Should work
         
-        // Execution attempts
         employee.executeForm(robot); // Should fail - grade 45 required
         manager.executeForm(robot);  // Should work
         
@@ -45,11 +42,9 @@ int main() {
         PresidentialPardonForm pardon("Criminal");
         std::cout << pardon << std::endl;
         
-        // Signing attempts
         manager.signForm(pardon);   // Should fail - grade 25 required
         boss.signForm(pardon);      // Should work
         
-        // Execution attempts
         manager.executeForm(pardon); // Should fail - grade 5 required
         boss.executeForm(pardon);    // Should work
         

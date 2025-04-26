@@ -1,6 +1,5 @@
 #include "ShrubberyCreationForm.hpp"
 
-// Orthodox Canonical Form implementations
 ShrubberyCreationForm::ShrubberyCreationForm() : 
     AForm("Shrubbery Creation Form", 145, 137),
     _target("default") {
@@ -27,12 +26,8 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 ShrubberyCreationForm::~ShrubberyCreationForm() {
 }
 
-// Implementation of pure virtual function
 void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
-    // Check if form can be executed
     checkExecution(executor);
-    
-    // Create file with ASCII trees
     std::string filename = _target + "_shrubbery";
     std::ofstream outfile(filename.c_str());
     
@@ -41,7 +36,6 @@ void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
         return;
     }
     
-    // Write ASCII trees to file
     outfile << "         *         " << std::endl;
     outfile << "        /|\\        " << std::endl;
     outfile << "       / | \\       " << std::endl;
@@ -65,7 +59,6 @@ void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
     std::cout << "Created shrubbery in file " << filename << std::endl;
 }
 
-// Getter
 std::string ShrubberyCreationForm::getTarget() const {
     return _target;
 }

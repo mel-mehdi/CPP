@@ -1,6 +1,5 @@
 #include "AForm.hpp"
 
-// Orthodox Canonical Form implementations
 AForm::AForm() : 
     _name("default form"), 
     _signed(false), 
@@ -28,7 +27,6 @@ AForm::AForm(const AForm& other) :
 
 AForm& AForm::operator=(const AForm& other) {
     if (this != &other) {
-        // Can't copy const attributes, only copy the signed status
         _signed = other._signed;
     }
     return *this;
@@ -37,7 +35,6 @@ AForm& AForm::operator=(const AForm& other) {
 AForm::~AForm() {
 }
 
-// Getters
 std::string AForm::getName() const {
     return _name;
 }
@@ -54,14 +51,12 @@ int AForm::getGradeToExecute() const {
     return _gradeToExecute;
 }
 
-// Member functions
 void AForm::beSigned(const Bureaucrat& bureaucrat) {
     if (bureaucrat.getGrade() > _gradeToSign)
         throw GradeTooLowException();
     _signed = true;
 }
 
-// Common execution check
 void AForm::checkExecution(const Bureaucrat& executor) const {
     if (!_signed)
         throw NotSignedException();
@@ -69,7 +64,6 @@ void AForm::checkExecution(const Bureaucrat& executor) const {
         throw GradeTooLowException();
 }
 
-// Exception classes implementation
 const char* AForm::GradeTooHighException::what() const throw() {
     return "Error: Form grade too high";
 }
@@ -82,7 +76,6 @@ const char* AForm::NotSignedException::what() const throw() {
     return "Error: Form is not signed";
 }
 
-// Insertion operator overload
 std::ostream& operator<<(std::ostream& os, const AForm& form) {
     os << "Form: " << form.getName() 
        << ", signed: " << (form.isSigned() ? "yes" : "no") 
