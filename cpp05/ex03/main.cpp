@@ -8,38 +8,26 @@
 
 int main() {
     try {
-        std::cout << "--- Creating Bureaucrats ---" << std::endl;
-        Bureaucrat boss("Executive", 1);
-        Bureaucrat manager("Manager", 40);
-        
+        // Create one high-level bureaucrat
+        Bureaucrat boss("CEO", 1);
         std::cout << boss << std::endl;
-        std::cout << manager << std::endl;
+        Intern intern;
+        std::string formTypes[] = {
+            "shrubbery creation", 
+            "robotomy request", 
+            "presidential pardon",
+            "invalid form type"  // Test invalid form
+        };
         
-        std::cout << "\n--- Testing Intern Form Creation ---" << std::endl;
-        Intern someRandomIntern;
-        AForm* form1 = someRandomIntern.makeForm("shrubbery creation", "garden");
-        if (form1) {
-            boss.signForm(*form1);
-            manager.executeForm(*form1);
-            delete form1;
-        }
-        AForm* form2 = someRandomIntern.makeForm("robotomy request", "Bender");
-        if (form2) {
-            boss.signForm(*form2);
-            boss.executeForm(*form2);
-            delete form2;
-        }
-        AForm* form3 = someRandomIntern.makeForm("presidential pardon", "Douglas Adams");
-        if (form3) {
-            boss.signForm(*form3);
-            boss.executeForm(*form3);
-            delete form3;
-        }
-        
-        std::cout << "\n--- Testing with invalid form name ---" << std::endl;
-        AForm* form4 = someRandomIntern.makeForm("coffee making", "office");
-        if (form4) {
-            delete form4; // This shouldn't execute
+        for (int i = 0; i < 4; i++) {
+            std::cout << "\n--- Creating " << formTypes[i] << " form ---" << std::endl;
+            AForm* form = intern.makeForm(formTypes[i], "Target");
+            
+            if (form) {
+                boss.signForm(*form);
+                boss.executeForm(*form);
+                delete form;
+            }
         }
     }
     catch (std::exception& e) {

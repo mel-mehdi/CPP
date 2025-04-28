@@ -7,53 +7,43 @@
 
 int main() {
     try {
-        std::cout << "--- Creating Bureaucrats ---" << std::endl;
-        Bureaucrat boss("Executive", 1);
-        Bureaucrat manager("Manager", 40);
-        Bureaucrat employee("Employee", 100);
-        Bureaucrat intern("Intern", 150);
+        // Create bureaucrats with different grades
+        Bureaucrat highLevel("Director", 5);
+        Bureaucrat midLevel("Manager", 40);
+        Bureaucrat lowLevel("Intern", 140);
         
-        std::cout << boss << std::endl;
-        std::cout << manager << std::endl;
-        std::cout << employee << std::endl;
-        std::cout << intern << std::endl;
+        std::cout << "--- Bureaucrats ---\n";
+        std::cout << highLevel << std::endl;
+        std::cout << midLevel << std::endl;
+        std::cout << lowLevel << std::endl;
         
-        std::cout << "\n--- Testing ShrubberyCreationForm ---" << std::endl;
-        ShrubberyCreationForm shrub("garden");
-        std::cout << shrub << std::endl;
+        // Test each form type
+        std::cout << "\n--- Shrubbery Creation Form ---\n";
+        ShrubberyCreationForm shrubForm("home");
+        lowLevel.signForm(shrubForm);
+        midLevel.executeForm(shrubForm);
         
-        std::cout << "--------\n";
-        intern.signForm(shrub);     // Should work - grade 145 required
+        std::cout << "\n--- Robotomy Request Form ---\n";
+        RobotomyRequestForm robotForm("Employee");
+        midLevel.signForm(robotForm);
+        midLevel.executeForm(robotForm);
         
-        intern.executeForm(shrub);  // Should fail - grade 137 required
-        employee.executeForm(shrub); // Should work
+        std::cout << "\n--- Presidential Pardon Form ---\n";
+        PresidentialPardonForm pardonForm("Citizen");
+        highLevel.signForm(pardonForm);
+        highLevel.executeForm(pardonForm);
         
-        std::cout << "\n--- Testing RobotomyRequestForm ---" << std::endl;
-        RobotomyRequestForm robot("Victor");
-        std::cout << robot << std::endl;
+        // Test failed execution (insufficient grade)
+        std::cout << "\n--- Testing Failed Execution ---\n";
+        lowLevel.executeForm(pardonForm);
         
-        employee.signForm(robot);   // Should fail - grade 72 required
-        manager.signForm(robot);    // Should work
-        
-        employee.executeForm(robot); // Should fail - grade 45 required
-        manager.executeForm(robot);  // Should work
-        
-        std::cout << "\n--- Testing PresidentialPardonForm ---" << std::endl;
-        PresidentialPardonForm pardon("Criminal");
-        std::cout << pardon << std::endl;
-        
-        manager.signForm(pardon);   // Should fail - grade 25 required
-        boss.signForm(pardon);      // Should work
-        
-        manager.executeForm(pardon); // Should fail - grade 5 required
-        boss.executeForm(pardon);    // Should work
-        
-        std::cout << "\n--- Testing unsigned form execution ---" << std::endl;
-        PresidentialPardonForm unsignedPardon("Fugitive");
-        boss.executeForm(unsignedPardon); // Should fail - not signed
+        // Test unsigned form
+        std::cout << "\n--- Testing Unsigned Form ---\n";
+        PresidentialPardonForm unsignedForm("Someone");
+        highLevel.executeForm(unsignedForm);
     }
     catch (std::exception& e) {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cerr << "Exception: " << e.what() << std::endl;
     }
     
     return 0;
