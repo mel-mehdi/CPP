@@ -35,29 +35,22 @@ void identify(Base* p) {
 }
 
 void identify(Base& p) {
-    try {
-        A& a = dynamic_cast<A&>(p);
-        (void)a;
+    A* a_ptr = dynamic_cast<A*>(&p);
+    if (a_ptr != NULL) {
         std::cout << "Reference type identified as: A" << std::endl;
         return;
-    } catch (std::bad_cast&) {
     }
     
-    try {
-        B& b = dynamic_cast<B&>(p);
-        (void)b;
+    B* b_ptr = dynamic_cast<B*>(&p);
+    if (b_ptr != NULL) {
         std::cout << "Reference type identified as: B" << std::endl;
         return;
-    } catch (std::bad_cast&) {
     }
     
-    try {
-        C& c = dynamic_cast<C&>(p);
-        (void)c;
+    C* c_ptr = dynamic_cast<C*>(&p);
+    if (c_ptr != NULL) {
         std::cout << "Reference type identified as: C" << std::endl;
         return;
-    } catch (std::bad_cast&) {
-
     }
     
     std::cout << "Reference type could not be identified" << std::endl;
